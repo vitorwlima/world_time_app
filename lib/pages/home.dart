@@ -16,19 +16,37 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            TextButton.icon(
-              onPressed: () {
-              Navigator.pushNamed(context, '/location');},
-              icon: Icon(Icons.edit_location),
-              label: Text("Editar localização"),
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all(Colors.black),
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(0, 100, 0, 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              TextButton.icon(
+                onPressed: () {
+                Navigator.pushNamed(context, '/location');},
+                icon: Icon(Icons.edit_location),
+                label: Text("Editar localização"),
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(Colors.black),
+              ),
             ),
+              SizedBox(height: 40),
+              Center(
+                child: Text(data['location'],
+                style: TextStyle(
+                  fontSize: 30,
+                )),
+              ),
+              SizedBox(height: 20),
+              Center(
+                child: Text(data['time'],
+                style: TextStyle(
+                  fontSize: 60,
+                  fontWeight: FontWeight.bold,
+                )),
+              ),
+            ]
           ),
-            Text("time is: ${data['time']}"),
-          ]
         ),
       ),
     );
