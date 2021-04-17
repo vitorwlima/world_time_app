@@ -11,11 +11,11 @@ class WorldTime {
   WorldTime({ this.location, this.flag, this.url });
 
 
-  Future<void> getData() async {
+  Future <void> getData() async {
 
     try {
 
-      Response response = await get(Uri.parse('http://worldtimeapi.org/api/timezone/$url'));
+      Response response = await get(Uri.parse('https://worldtimeapi.org/api/timezone/$url'));
       Map data = jsonDecode(response.body);
 
       String datetime = data['datetime'];
