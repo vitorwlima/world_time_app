@@ -15,7 +15,9 @@ class _HomeState extends State<Home> {
 
     data = ModalRoute.of(context).settings.arguments;
     String bgImg = data['isDayTime'] ? 'bg-dia.png' : 'bg-noite.png';
-    print(data);
+
+    Color corLetra1 = data['isDayTime'] ? Colors.grey[900] : Colors.grey[200];
+    Color corLetra2 = data['isDayTime'] ? Colors.black : Colors.white;
 
     return Scaffold(
       body: Container(
@@ -35,18 +37,15 @@ class _HomeState extends State<Home> {
                 TextButton.icon(
                   onPressed: () {
                   Navigator.pushNamed(context, '/location');},
-                  icon: Icon(Icons.edit_location, color: Colors.grey[200]),
-                  label: Text("Editar localização", style: TextStyle(color: Colors.grey[200])),
-                style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all(Colors.black),
-                ),
+                  icon: Icon(Icons.edit_location, color: corLetra1),
+                  label: Text("Editar localização", style: TextStyle(color: corLetra1)),
               ),
                 SizedBox(height: 40),
                 Center(
                   child: Text(data['location'],
                   style: TextStyle(
                     fontSize: 30,
-                    color: Colors.white
+                    color: corLetra2
                   )),
                 ),
                 SizedBox(height: 20),
@@ -55,7 +54,7 @@ class _HomeState extends State<Home> {
                   style: TextStyle(
                     fontSize: 60,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white
+                    color: corLetra2
                   )),
                 ),
               ]
