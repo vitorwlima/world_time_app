@@ -28,7 +28,7 @@ class WorldTime {
 
       time = DateFormat.jm().format(now);
 
-      isDayTime = now.hour > 6 && now.hour < 19;
+      isDayTime = now.hour > 5 && now.hour < 19;
 
     }
     catch (e) {

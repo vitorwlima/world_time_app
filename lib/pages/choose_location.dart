@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:world_time_app/services/world_time.dart';
+import 'package:world_time_app/pages/loading.dart';
 
 class ChooseLocation extends StatefulWidget {
   @override
@@ -20,6 +21,17 @@ class _ChooseLocationState extends State<ChooseLocation> {
     WorldTime(url: 'Asia/Jakarta', location: 'Jacarta', flag: 'indonesia.png'),
   ];
 
+  void setupWorldTime(index) async {
+    WorldTime instance = WorldTime(location: locations[index].location, flag: locations[index].flag, url: locations[index].url);
+    await instance.getData();
+    Navigator.pushReplacementNamed(context, '/home', arguments: {
+      'location': instance.location,
+      'flag': instance.flag,
+      'time': instance.time,
+      'isDayTime': instance.isDayTime,
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +49,9 @@ class _ChooseLocationState extends State<ChooseLocation> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 1),
                 child: ListTile(
-                  onTap: () {},
+                  onTap: () {
+                    setupWorldTime(index);
+                  },
                   title: Text(locations[index].location),
                   leading: CircleAvatar(
                     backgroundImage: AssetImage('assets/${locations[index].flag}')
